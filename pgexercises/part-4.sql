@@ -60,3 +60,36 @@ WHERE
 ORDER BY member, facility;
 
 */
+
+--- OR SELECT DISTINCT CONCAT(a.firstname,' ', a.surname) as member,
+
+--- How can you produce a list of bookings on the day of 2012-09-14 which will cost the member (or guest) more than $30? 
+--- Remember that guests have different costs to members (the listed costs are per half-hour 'slot'), and the guest user is always ID 0. 
+--- Include in your output the name of the facility, the name of the member formatted as a single column, and the cost. Order by descending cost, 
+--- and do not use any subqueries.
+
+/*
+SELECT a.firstname || ' ' || a.surname as member,
+       b.name as facility,
+	CASE
+            WHEN a.memid = 0 THEN b.guestcost* c.slots
+	    ELSE b.membercost* c.slots
+       END AS cost
+FROM cd.members as a
+INNER JOIN cd.bookings as c
+        ON c.memid = a.memid
+INNER JOIN cd.facilities as b
+        ON b.facid = c.facid
+WHERE 
+	  c.starttime >= '2012-09-14 ' AND 
+	  c.starttime < '2012-09-15 'AND 
+	  (
+	  (a.memid = 0 AND (b.guestcost* c.slots)>30) OR 
+	  ((b.membercost* c.slots)>30)
+	  )
+
+ORDER BY cost DESC;
+
+*/
+--- a.memid != 0 AND
+
