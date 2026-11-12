@@ -93,3 +93,17 @@ ORDER BY cost DESC;
 */
 --- a.memid != 0 AND
 
+
+--- How can you output a list of all members, including the individual who recommended them (if any), without using any joins? 
+--- Ensure that there are no duplicates in the list, and that each firstname + surname pairing is formatted as a column and ordered.
+
+/*
+
+SELECT DISTINCT a.firstname || ' ' || a.surname as member,
+   (SELECT b.firstname || ' ' || b.surname as recommender
+    FROM cd.members as b
+    WHERE b.memid = a.recommendedby) 
+FROM cd.members as a
+ORDER BY member
+
+*/
