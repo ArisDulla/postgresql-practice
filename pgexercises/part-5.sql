@@ -98,3 +98,27 @@ update cd.facilities facs
         guestcost = (select guestcost * 1.1 from cd.facilities where facid = 0)
     where facs.facid = 1;  
 */
+
+--- As part of a clearout of our database, we want to delete all bookings from the cd.bookings table. 
+--- How can we accomplish this?
+/*
+DELETE FROM cd.bookings;
+*/
+--- truncate cd.bookings;
+
+--- We want to remove member 37, who has never made a booking, from our database. 
+--- How can we achieve that?
+/*
+DELETE FROM cd.members WHERE memid=37 ;
+*/
+
+--- In our previous exercises, we deleted a specific member who had never made a booking. 
+--- How can we make that more general, to delete all members who have never made a booking?
+/*
+DELETE FROM cd.members WHERE memid NOT IN (select memid from cd.bookings)
+*/
+---- SELECT 1:  Checks whether a row exists.
+/*
+delete from cd.members mems where not exists (select 1 from cd.bookings where memid = mems.memid);
+
+*/
