@@ -43,3 +43,15 @@ INSERT INTO cd.facilities (facid, name, membercost, guestcost, initialoutlay, mo
 VALUES (9, 'Spa', 20, 30,100000,800),
        (10, 'Squash Court 2', 3.5, 17.5,5000,80);
 */
+
+
+--- Let's try adding the spa to the facilities table again. This time, though, 
+--- we want to automatically generate the value for the next facid, rather than specifying 
+--- it as a constant. Use the following values for everything else:
+
+--- Name: 'Spa', membercost: 20, guestcost: 30, initialoutlay: 100000, monthlymaintenance: 800.
+
+/*
+INSERT INTO cd.facilities (facid, name, membercost, guestcost, initialoutlay, monthlymaintenance)
+SELECT (SELECT max(facid) from cd.facilities)+1,'Spa', 20, 30,100000,800;
+*/
