@@ -55,3 +55,17 @@ VALUES (9, 'Spa', 20, 30,100000,800),
 INSERT INTO cd.facilities (facid, name, membercost, guestcost, initialoutlay, monthlymaintenance)
 SELECT (SELECT max(facid) from cd.facilities)+1,'Spa', 20, 30,100000,800;
 */
+
+--- We made a mistake when entering the data for the second tennis court. 
+--- The initial outlay was 10000 rather than 8000: you need to alter the data to fix the error.
+
+/*
+UPDATE cd.facilities
+    SET initialoutlay = 10000
+    WHERE facid = 1;
+*/
+
+/*
+update cd.facilities
+    set initialoutlay = 10000;
+*/
