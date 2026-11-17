@@ -19,3 +19,21 @@ FROM cd.facilities
 WHERE guestcost >= 10;
 
 */
+
+--- Produce a count of the number of recommendations each member has made. Order by member ID.
+
+/*
+SELECT recommendedby,count(*)
+FROM cd.members
+WHERE recommendedby is not NULL
+GROUP BY recommendedby
+ORDER BY recommendedby
+
+
+*/
+--- When SQL encounters a GROUP BY clause, it calculates aggregate functions 
+--- (such as COUNT, SUM, AVG, MAX, and MIN) separately for each group.
+
+--- HAVING → Filters groups based on aggregate functions. HAVING COUNT(*) > 2;
+--- OVER() → Calculates results while preserving the original rows.
+
