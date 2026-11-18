@@ -47,3 +47,16 @@ FROM cd.bookings
 GROUP BY facid
 ORDER BY facid
 */
+
+--- Produce a list of the total number of slots booked per facility in the month of September 2012. 
+--- Produce an output table consisting of facility id and slots, sorted by the number of slots.
+
+/*
+SELECT facid, SUM(slots) as "Total Slots" 
+FROM cd.bookings
+WHERE starttime >= '2012-9-1' and starttime < '2012-10-1'
+GROUP BY facid
+ORDER BY "Total Slots"  
+*/ 
+--- or order by sum(slots);  
+
