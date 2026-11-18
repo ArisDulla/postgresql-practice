@@ -60,3 +60,14 @@ ORDER BY "Total Slots"
 */ 
 --- or order by sum(slots);  
 
+--- Produce a list of the total number of slots booked per facility per month in the year of 2012. 
+--- Produce an output table consisting of facility id and slots, sorted by the id and month.
+/*
+SELECT facid, EXTRACT(MONTH FROM starttime)as month ,SUM(slots) as "Total Slots"
+FROM cd.bookings 
+WHERE starttime >= '2012-1-1' and starttime < '2013-1-1'
+GROUP BY facid,month
+ORDER BY facid,month
+
+*/
+--- OR  where extract(year from starttime) = 2012
