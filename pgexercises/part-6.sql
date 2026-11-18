@@ -71,3 +71,16 @@ ORDER BY facid,month
 
 */
 --- OR  where extract(year from starttime) = 2012
+
+
+--- Find the total number of members (including guests) who have made at least one booking.
+/*
+SELECT  COUNT(*) as count
+FROM (SELECT DISTINCT memid FROM cd.bookings);
+
+OR
+
+select count(distinct memid) from cd.bookings          
+
+
+*/
